@@ -1,8 +1,3 @@
-# Report to Cloud dashboard
-ey_cloud_report "processing php" do
-  message "processing php - install"
-end
-
 # Unmask the PHP package (includes PHP-FPM)
 enable_package "#{node[:php][:full_atom]}" do
   version "#{node[:php][:version]}"

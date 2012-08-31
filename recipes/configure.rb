@@ -1,21 +1,21 @@
 # create directory for fpm logs
-directory "/var/log/engineyard/php-fpm" do
-  owner node.engineyard.ssh_username
-  group node.engineyard.ssh_username
+directory "/var/log/php-fpm" do
+  owner node[:owner_name]
+  group node[:owner_name]
   mode 0755
   action :create
 end
 
 # create error log for fpm
-file "/var/log/engineyard/php-fpm/error.log" do
-  owner node.engineyard.ssh_username
-  group node.engineyard.ssh_username
+file "/var/log/php-fpm/error.log" do
+  owner node[:owner_name]
+  group node[:owner_name]
   mode 0644
   action :create_if_missing
 end
 
 # create directory for unix socket(s)
-directory "/var/run/engineyard" do
+directory "/var/run" do
   owner node[:owner_name]
   group node[:owner_name]
   recursive true
@@ -66,12 +66,12 @@ end
 
 # generate fpm pool config
 template "/data/#{node[:php][:app_name]}/shared/config/fpm-pool.conf" do
-  owner node.engineyard.ssh_username
-  group node.engineyard.ssh_username
+  owner node[:owner_name]
+  group node[:owner_name]
   mode 0644
   source "fpm-pool.conf.erb"
   variables({
     :app_name => node[:php][:app_name],
-    :user => node.engineyard.ssh_username
+    :user => node[:owner_name]
   })
 end

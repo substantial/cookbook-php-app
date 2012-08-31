@@ -7,7 +7,7 @@
 
 php_fpm_BIN=/usr/bin/php-fpm
 php_fpm_CONF=/etc/php-fpm.conf
-php_fpm_PID=/var/run/engineyard/php-fpm.pid
+php_fpm_PID=/var/run/php-fpm.pid
 
 php_opts="--fpm-config $php_fpm_CONF"
 
